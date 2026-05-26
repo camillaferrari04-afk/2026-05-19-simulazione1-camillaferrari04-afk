@@ -7,9 +7,17 @@ class Controller:
         self._view = view
         # the model, which implements the logic of the program and holds the data
         self._model = model
+        _genere = None
 
     def fillDDGenre(self):
-        pass
+        self._view._ddGenre.options.clear()
+        for g in self._model.generi:
+            self._view._ddGenre.options.append(ft.dropdown.Option(
+                                                                    text=g.Name,
+                                                                    data=g,
+                                                                    on_click=self.memogenere
+            ))
+
 
     def handleCreaGrafo(self, e):
         pass
@@ -19,3 +27,6 @@ class Controller:
 
     def handleCammino(self,e):
         pass
+
+    def memogenere(self, e):
+        self._genere = e.controls.data
